@@ -15,11 +15,11 @@ function FindRecipes() {
         console.log(recipeName);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         try {
-            // axios.get();
             event.preventDefault();
-
+            let data = await axios.get('http://localhost:3001/api/recipe/cake');
+            console.log(data);
             dispatch(setRecipes([
                 {
                     name: 'sushi',
@@ -32,8 +32,6 @@ function FindRecipes() {
                     directions: "you already know"
                 }
         ]));
-        console.log("work?")
-        console.log(data);
         }
         catch (err) {
             dispatch(setRecipes([

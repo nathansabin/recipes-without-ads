@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "develop": "concurrently \"cd ./server && mvn clean install && java -jar ./target/demo-0.0.1-SNAPSHOT.jar\" \"cd ./client && npm run start\" "
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/nathansabin/recipes-without-ads/issues"
   },
-  "homepage": "https://github.com/nathansabin/recipes-without-ads#readme"
+  "homepage": "https://github.com/nathansabin/recipes-without-ads#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
