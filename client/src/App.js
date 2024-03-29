@@ -2,6 +2,7 @@ import './App.css';
 import Header from './components/header/header';
 import Sidebar from './components/sidebar/sidebar';
 import FindRecipes from './components/find/findRecipes';
+import Recipes from './components/recipes/recipes';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Sidebar />
         <FindRecipes />
       </div>
+      <Recipes />
     </div>
   );
 }

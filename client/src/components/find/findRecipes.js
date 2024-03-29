@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { setRecipes } from '../../utils/redux/actions/recipeAction'
 import axios from 'axios';
@@ -6,34 +6,24 @@ import axios from 'axios';
 function FindRecipes() {
     const [ recipeName, setRecipeName ] = useState('');
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.recipe.recipes);
+    const stateData = useSelector((state) => state.recipe.recipes);
 
 
     const searchName = (event) => {
         let name = event.target.value;
         setRecipeName(name);
-        console.log(recipeName);
     }
 
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
-            let data = await axios.get('http://localhost:3001/api/recipe/cake');
-            console.log(data);
-            dispatch(setRecipes([
-                {
-                    name: 'sushi',
-                    ingredients: ['rice', 'fish', 'seaweed'],
-                    directions: "roll idk lol"
-                },
-                {
-                    name: 'pb&j',
-                    ingredients: ['bread', 'jelly', 'peanut butter'],
-                    directions: "you already know"
-                }
-        ]));
+            let data = await axios.get(`http://localhost:3001/api/recipe/${recipeName}`);
+            data = data.data;
+
+            dispatch(setRecipes(data));
         }
         catch (err) {
+            console.log("error");
             dispatch(setRecipes([
                 null
             ]));
@@ -42,7 +32,7 @@ function FindRecipes() {
 
 
     return (
-        <div className='mx-auto bg-amber-200 p-2 h-48 w-full bg-brown-400'>
+        <div className='font-mono mx-auto bg-amber-200 p-2 h-48 w-full bg-brown-400'>
             <form className=''>
                 <div className='flex flex-col'>
                     <label className='text-4xl mx-auto py-1 text-red-300 font-light'>Enter a food:</label>
