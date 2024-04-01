@@ -1,18 +1,20 @@
 import './App.css';
 import Header from './components/header/header';
-import Sidebar from './components/sidebar/sidebar';
-import FindRecipes from './components/find/findRecipes';
-import Recipes from './components/recipes/recipes';
+import Home from './pages/home/home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="h-full w-100">
       <Header />
-      <div className='flex flex-row my-4'>
-        <Sidebar />
-        <FindRecipes />
-      </div>
-      <Recipes />
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={<Home />} 
+            />
+        </Routes>
+      </Router>
     </div>
   );
 }

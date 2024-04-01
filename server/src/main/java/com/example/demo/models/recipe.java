@@ -5,14 +5,14 @@ import java.util.List;
 public class recipe {
 
     private String title;
-    private List<String> ingridents;
-    private String directions;
+    private List<String> ingredients;
+    private List<String> directions;
     private String url;
     private String image;
 
-    public recipe(String title, List<String> ingridents, String directions, String url, String image) {
+    public recipe(String title, List<String> ingridents, List<String> directions, String url, String image) {
         this.title = title;
-        this.ingridents = ingridents;
+        this.ingredients = ingridents;
         this.directions = directions;
         this.url = url;
         this.image = image;
@@ -27,19 +27,19 @@ public class recipe {
         this.title = title;
     }
 
-    public List<String> getIngridents() {
-        return this.ingridents;
+    public List<String> getIngredients() {
+        return this.ingredients;
     }
 
     public void setIngridents(List<String> ingridents) {
-        this.ingridents = ingridents;
+        this.ingredients = ingridents;
     }
 
-    public String getDirections() {
+    public List<String> getDirections() {
         return this.directions;
     }
 
-    public void setDirections(String directions) {
+    public void setDirections(List<String> directions) {
         this.directions = directions;
     }
 
@@ -63,7 +63,7 @@ public class recipe {
     public String toString() {
         return "recipe{" +
                 "title='" + title + '\'' +
-                ", ingridents=" + ingridents +
+                ", ingridents=" + ingredients +
                 ", directions='" + directions + '\'' +
                 ", url='" + url + '\'' +
                 ", image='" + image + '\'' +

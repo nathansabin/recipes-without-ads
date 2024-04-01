@@ -5,10 +5,7 @@ import org.jsoup.*;
 import org.jsoup.helper.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +44,40 @@ public class recipeController {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    @GetMapping("/api/recipe/")
+    public recipe getRecipe(@RequestBody recipe food) {
+        try {
+            List<String> ingredients = new ArrayList<>();
+            List<String> directions = new ArrayList<>();
+
+            Document con = Jsoup.connect(food.getUrl()).userAgent("Mozilla/5.0").timeout(5000).get();
+
+            Elements ingredientHtml = con.select(".mntl-structured-ingredients__list-item");
+
+            for (Element ele : ingredientHtml) {
+                String ingredient = ele.select("li > p > span[data-ingredient-quantity=true]").text() + " ";
+                ingredient = ingredient + ele.select("li > p > span[data-ingredient-unit=true]").text() + " ";
+                ingredient = ingredient + ele.select("li > p > span[data-ingredient-name=true]").text() + " ";
+
+                ingredients.add(ingredient);
+            }
+
+            Elements directionsHtml = con.select(".comp.mntl-sc-block.mntl-sc-block-html");
+
+            for (Element ele : directionsHtml) {
+                directions.add(ele.text());
+            }
+
+            food.setIngridents(ingredients);
+            food.setDirections(directions);
+
+            return food;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
