@@ -23,13 +23,11 @@ function FindRecipes() {
             dispatch(setRecipes(data));
         }
         catch (err) {
-            console.log("error");
             dispatch(setRecipes([
                 null
             ]));
         }
     }
-
 
     return (
         <div className='font-mono mx-auto bg-amber-200 p-2 h-48 w-full bg-brown-400'>

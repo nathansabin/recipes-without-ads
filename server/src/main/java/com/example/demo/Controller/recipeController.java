@@ -47,7 +47,7 @@ public class recipeController {
         return null;
     }
 
-    @GetMapping("/api/recipe/")
+    @PostMapping("/api/recipe/")
     public recipe getRecipe(@RequestBody recipe food) {
         try {
             List<String> ingredients = new ArrayList<>();
