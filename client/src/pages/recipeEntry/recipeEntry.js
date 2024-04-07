@@ -30,7 +30,6 @@ function RecipeEntry() {
             setUserData(fetchData.data);
             console.log(fetchData.data);
         } catch (error) {
-            console.log("error from fetch", error);
             window.location.assign('/error');
         }
     }
