@@ -20,15 +20,24 @@ function RecipeEntry() {
 
     const grabData = async (recipeData) => {
         try {
-            const fetchData = await axios.post('http://localhost:3001/api/recipe/', recipeData, {
+            let fetchData = await axios.post('http://localhost:3001/api/recipe/', recipeData, {
                 headers: {
                   'Content-Type': 'application/json'
                 }
             });
 
+            if (fetchData.status != 200) {
+                window.location.assign('/error');
+            }
+
+            fetchData = fetchData.data;
+
+            if (!fetchData.ingredients || !fetchData.title || !fetchData.directions) {
+                window.location.assign('/error');
+            }
+
             setLoading(true);
-            setUserData(fetchData.data);
-            console.log(fetchData.data);
+            setUserData(fetchData);
         } catch (error) {
             window.location.assign('/error');
         }
@@ -46,7 +55,7 @@ function RecipeEntry() {
         <div className='w-full h-auto my-3 pb-12 mb-24'>
             <div className='h-auto w-5/6 pt-3 bg-red-300 mx-auto rounded-md'>
                 <h2 className='text-white pl-8 mb-4 text-4xl'>{userData.title}</h2>
-                <div className='flex flex-row'>
+                <div className='flex flex-col md:flex-row'>
                     <div className='mx-auto'>
                         <img className="" src={userData.image}></img>
                     </div>
