@@ -20,7 +20,7 @@ function RecipeEntry() {
 
     const grabData = async (recipeData) => {
         try {
-            let fetchData = await axios.post('http://localhost:3001/api/recipe/', recipeData, {
+            let fetchData = await axios.post(`${process.env.REACT_APP_RECIPE_API}recipe/`, recipeData, {
                 headers: {
                   'Content-Type': 'application/json'
                 }

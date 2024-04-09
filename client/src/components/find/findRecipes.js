@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { setRecipes } from '../../utils/redux/actions/recipeAction'
 import axios from 'axios';
 
 function FindRecipes() {
     const [ recipeName, setRecipeName ] = useState('');
     const dispatch = useDispatch();
-    const stateData = useSelector((state) => state.recipe.recipes);
 
 
     const searchName = (event) => {
@@ -17,7 +16,7 @@ function FindRecipes() {
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
-            let data = await axios.get(`http://localhost:3001/api/recipe/${recipeName}`);
+            let data = await axios.get(`${process.env.REACT_APP_RECIPE_API}recipe/${recipeName}`);
             data = data.data;
 
             dispatch(setRecipes(data));
