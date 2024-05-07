@@ -18,8 +18,6 @@ This application solved a real-world issue of mine: recipe websites are not desi
 
     Link: 
     http://recipe-without-ads.s3-website.us-east-2.amazonaws.com 
-    
-    ![site](site.png)
   
   ## Credits
   
