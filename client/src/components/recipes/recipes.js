@@ -10,7 +10,7 @@ function Recipes() {
         let recipe = recipeState[event.target.id];
         await localStorage.setItem("recipe", JSON.stringify(recipeState[event.target.id]));
 
-        window.location.assign("/recipe");
+        window.location.assign("/#/recipe");
     }
 
     return (

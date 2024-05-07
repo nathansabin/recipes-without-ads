@@ -25,6 +25,7 @@ function FindRecipes() {
             dispatch(setRecipes([
                 null
             ]));
+            window.location.assign("/#/error");
         }
     }
 

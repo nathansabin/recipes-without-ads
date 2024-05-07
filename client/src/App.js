@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="h-full w-100">
       <Header />
-      <Router>
         <Routes>
           <Route
             path="/"
@@ -24,7 +23,6 @@ function App() {
             element={<Error />}  
             />
         </Routes>
-      </Router>
     </div>
   );
 }

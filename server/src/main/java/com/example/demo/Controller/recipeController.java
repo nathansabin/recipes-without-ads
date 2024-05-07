@@ -5,14 +5,18 @@ import org.jsoup.*;
 import org.jsoup.helper.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 public class recipeController {
+
+    private String frontendURL;
+
     @GetMapping("/api/recipe/{food}")
     public List<recipe> getRecipes(@PathVariable("food") String food) {
         try {
