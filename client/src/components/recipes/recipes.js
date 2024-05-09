@@ -7,10 +7,14 @@ function Recipes() {
     const selectRecipe = async (event) => {
         event.preventDefault();
 
-        let recipe = recipeState[event.target.id];
-        await localStorage.setItem("recipe", JSON.stringify(recipeState[event.target.id]));
+        try {
+            let recipe = recipeState[event.target.id];
+            await localStorage.setItem("recipe", JSON.stringify(recipeState[event.target.id]));
 
-        window.location.assign("/#/recipe");
+            window.location.assign("/#/recipe");
+        } catch (err) {
+            window.location.assign("/#/error");
+        }
     }
 
     return (
@@ -19,9 +23,9 @@ function Recipes() {
                 <ol className='justify-center flex flex-row flex-wrap'>
                 {recipeState.length > 0 && recipeState.map((recipe, id) => (
                 <a key={id} onClick={selectRecipe}>
-                    <li className='bg-amber-300 w-48 h-44 m-1 text-white text-lg rounded hover:bg-amber-600 hover:text-red-200'>
+                    <li className='bg-amber-300 w-48 h-44 m-1 text-white text-lg rounded hover:bg-amber-600 hover:text-red-200 sm:w-72 sm:h-52'>
                         <h4 className='text-center pt-1'>{recipe.title}</h4>
-                        <img id={id} className="mx-auto m-0 w-36 h-auto" src={recipe.image} alt={recipe.title} />
+                        <img id={id} className="mx-auto m-0 w-36 h-auto sm:w-48" src={recipe.image} alt={recipe.title} />
                     </li>
                 </a>
             ))}
