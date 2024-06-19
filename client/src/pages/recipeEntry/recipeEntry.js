@@ -12,7 +12,7 @@ function RecipeEntry() {
             grabData(data);
         } catch {
             console.log("err");
-            window.location.assign('/error');
+            window.location.assign('/#/error');
         }
     },[]);
 
@@ -27,19 +27,19 @@ function RecipeEntry() {
             });
 
             if (fetchData.status != 200) {
-                window.location.assign('/error');
+                window.location.assign('/#/error');
             }
 
             fetchData = fetchData.data;
 
             if (!fetchData.ingredients || !fetchData.title || !fetchData.directions) {
-                window.location.assign('/error');
+                window.location.assign('/#/error');
             }
 
             setLoading(true);
             setUserData(fetchData);
         } catch (error) {
-            window.location.assign('/error');
+            window.location.assign('/#/error');
         }
     }
 

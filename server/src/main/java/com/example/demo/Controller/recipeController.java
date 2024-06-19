@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Utils.envWorker;
 import com.example.demo.models.recipe;
 import org.jsoup.*;
 import org.jsoup.helper.*;
@@ -11,11 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class recipeController {
-
-    private String frontendURL;
 
     @GetMapping("/api/recipe/{food}")
     public List<recipe> getRecipes(@PathVariable("food") String food) {
@@ -59,7 +57,7 @@ public class recipeController {
 
             Document con = Jsoup.connect(food.getUrl()).userAgent("Mozilla/5.0").timeout(5000).get();
 
-            Elements ingredientHtml = con.select(".mntl-structured-ingredients__list-item");
+            Elements ingredientHtml = con.select(".mm-recipes-structured-ingredients__list-item");
 
             for (Element ele : ingredientHtml) {
                 String ingredient = ele.select("li > p > span[data-ingredient-quantity=true]").text() + " ";
